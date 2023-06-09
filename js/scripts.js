@@ -13,12 +13,10 @@ const renderCalendar = () => {
     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
 
-
     lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
     lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
 
-
-    console.log(firstDayofMonth, lastDateofLastMonth, lastDayofMonth, lastDateofLastMonth);
+   // console.log(firstDayofMonth, lastDateofLastMonth, lastDayofMonth, lastDateofLastMonth);
 
     let liTag = "";
 
@@ -27,16 +25,28 @@ const renderCalendar = () => {
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
-        //console.log(date.getDate(), new Date().getMonth(), new Date().getFullYear())
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
+  
+
+        if( 
+            i === date.getDate() 
+            && currMonth === new Date().getMonth() 
+            && currYear  === new Date().getFullYear()
+        ){
+            isToday = "active"
+        }else{
+            isToday = ""
+        }
+
         liTag += `<li class="${isToday}">${i}</li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) {
         liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
     }
+
     currentDate.innerText = `${months[currMonth]} ${currYear}`;
     daysTag.innerHTML = liTag;
+
 }
 
 renderCalendar();
