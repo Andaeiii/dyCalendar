@@ -21,7 +21,7 @@ body{
   background: #9B59B6;
 }
 .wrapper{
-  width: 450px;
+  width: 550px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
@@ -78,6 +78,15 @@ header .current-date{
   font-weight: 500;
   cursor: default;
 }
+
+.calendar li:nth-child(7n){
+  opacity:0.2 !important;
+}
+
+.calendar li:nth-child(7n+1){
+  opacity:0.2 !important;
+}
+
 .calendar .days li{
   z-index: 1;
   cursor: pointer;
@@ -85,7 +94,7 @@ header .current-date{
   margin-top: 30px;
 }
 .days li.inactive{
-  color: #aaa;
+  color: #ddd;
 }
 .days li.active{
   color: #fff;

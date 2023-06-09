@@ -10,39 +10,47 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
 
 const renderCalendar = () => {
-    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
+    
+    let day20 = new Date(currYear, currMonth, 25),
+
+    firstDayofMonth = new Date(currYear, currMonth, 20).getDate(),
+
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
 
-    lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
+    lastDayOfPrevMnth = new Date(currYear, currMonth, 0).getDate(), //if this month is may.. so lastDayOfPrevMnth = April 30
+
+    lastDayofMonth = new Date(currYear, currMonth, 20).getDay(),
     lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
 
-   // console.log(firstDayofMonth, lastDateofLastMonth, lastDayofMonth, lastDateofLastMonth);
+
+    console.log(currMonth, day20.getDay())
+
 
     let liTag = "";
 
-    for (let i = firstDayofMonth; i > 0; i--) {
-        liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+    for (let i = 20; i <= lastDayOfPrevMnth; i++) {
+        liTag += `<li>${i}</li>`;
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
   
+        if(i === date.getDate()  && currMonth === new Date().getMonth()  && currYear  === new Date().getFullYear()){
+           
+            isToday =  "active";
 
-        if( 
-            i === date.getDate() 
-            && currMonth === new Date().getMonth() 
-            && currYear  === new Date().getFullYear()
-        ){
-            isToday = "active"
         }else{
-            isToday = ""
+            isToday = i > 20 ? "inactive": '';
         }
+
+        
+        
 
         liTag += `<li class="${isToday}">${i}</li>`;
     }
 
-    for (let i = lastDayofMonth; i < 6; i++) {
-        liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
-    }
+    // for (let i = lastDayofMonth; i < 6; i++) {
+    //     liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
+    // }
 
     currentDate.innerText = `${months[currMonth]} ${currYear}`;
     daysTag.innerHTML = liTag;
